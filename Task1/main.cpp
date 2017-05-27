@@ -33,7 +33,6 @@ public:
     bool segment;
     string im_path;
     State(): reduce(false), rotate(false), segment(false), im_path("") {}
-    bool any() {return reduce || rotate || segment; }
 };
 
 State parse_args(int num, char **args) {
@@ -115,7 +114,7 @@ Mat rotate_image(Mat &image) {
 }
 
 // Segment image for N clusters
-Mat segment_image(Mat &image, int n_clusters=5) {
+Mat segment_image(Mat &image, int n_clusters=2) {
     Clustering C(image);
     C.Segment(n_clusters);
     Mat segmented(image.rows, image.cols, image.type());
